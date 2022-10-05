@@ -30,7 +30,7 @@ function HomePage({ navigation }) {
     }
   
     useEffect(() => {
-      getMovies();
+      getMovies(value);
     }, []);
 
     const renderItem = ({ item }) => {
