@@ -20,7 +20,7 @@ function MovieDetailPage({route,navigation }) {
 
         <Text style={{padding:15,fontSize:16}}>{movie.overview}</Text>
 
-        <Text style={{fontSize:15}}>Popularity {movie.popularity} | Release date {movie.release_date}</Text>
+        <Text style={{fontSize:15}}>Popularity: {movie.popularity} | Release date: {movie.release_date}</Text>
 
       
       </View>
