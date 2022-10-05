@@ -1,14 +1,25 @@
 import React, { useEffect, useState } from 'react';
 import { Button, View, Text ,FlatList,Image,TouchableOpacity} from 'react-native';
+import DropDownPicker from 'react-native-dropdown-picker';
 
 function HomePage({ navigation }) {
 
     const [data, setData] = useState([]);
     const [isLoading, setLoading] = useState(true);
+
+    const [open, setOpen] = useState(false);
+    const [value, setValue] = useState('popular');
+    const [items, setItems] = useState([
+        { label: 'Now Playing', value: 'now_playing' },
+        { label: 'Popular', value: 'popular' },
+        { label: 'Top rated', value: 'top_rated' },
+        { label: 'Upcoming', value: 'upcoming' }
+    ]);
   
-    const getMovies = async () => {
+  
+    const getMovies = async (mytype) => {
        try {
-        const response = await fetch('https://api.themoviedb.org/3/movie/popular?api_key=941d2165e4e6095b081a95d47b61e6b0&language=en-US&page=1');
+        const response = await fetch(`https://api.themoviedb.org/3/movie/${mytype}?api_key=941d2165e4e6095b081a95d47b61e6b0&language=en-US&page=1`);
         const json = await response.json();
         setData(json.results);
       } catch (error) {
@@ -52,6 +63,23 @@ function HomePage({ navigation }) {
   
     return (
       <View style={{ flex: 1}}>
+
+<View style={{justifyContent:'center',alignItems:'center',padding:20}}>
+
+<DropDownPicker
+                        open={open}
+                        value={value}
+                        items={items}
+                        setOpen={setOpen}
+                        setValue={setValue}
+                        setItems={setItems}
+                        onChangeValue={(value) => {
+                          // alert(value);
+                          getMovies(value)
+                        }}
+                        containerStyle={{ width: 200 }}
+                    />
+                    </View>
         {/* <Text>{JSON.stringify(data)}</Text> */}
         {/* <Text>Home Screen</Text>
         <Button
