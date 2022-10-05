@@ -13,7 +13,7 @@ function MainStack() {
   return (
     <NavigationContainer>
       <Stack.Navigator initialRouteName="Toptab">
-        <Stack.Screen name="MoviesList" component={MyTabs} />
+        <Stack.Screen name="Movies App"component={MyTabs} />
         <Stack.Screen name="Details" component={MovieDetailPage} />
       </Stack.Navigator>
     </NavigationContainer>
